@@ -1,0 +1,10 @@
+source: https://www.jfrog.com/confluence/display/RTF/Installing+with+Docker
+
+docker pull docker.bintray.io/jfrog/artifactory-cpp-ce
+docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-cpp-ce:latest
+
+TODO
+conan remote add <REMOTE> http://127.0.0.1:8081/artifactory/api/conan/conan-local
+conan user -p <PASSWORD> -r <REMOTE> <USERNAME>
+conan upload <RECIPE> -r <REMOTE> --all
+conan install . -r <REMOTE>
